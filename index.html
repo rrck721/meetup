@@ -69,7 +69,8 @@ body{background:var(--background);color:var(--foreground);font:14px/1.4 system-u
 #venue-viewer .venue-head{position:absolute;z-index:2;top:20px;left:20px;margin:0;max-width:calc(100% - 320px);padding:9px 12px;border-radius:8px;background:var(--background);}
 #venue-viewer .venue-head h3{font-size:16px;font-weight:500;}
 #venue-viewer [data-status]{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
-#venue-viewer .venue-tools{position:absolute;z-index:2;left:20px;top:76px;bottom:24px;display:flex;flex-direction:column;align-items:flex-start;flex-wrap:nowrap;gap:5px;width:max-content;max-width:180px;overflow-y:auto;margin:0;padding:0 4px 0 0;scrollbar-width:thin;}
+#venue-viewer .venue-tools{position:absolute;z-index:2;left:20px;top:76px;bottom:48px;display:flex;flex-direction:column;align-items:flex-start;flex-wrap:nowrap;gap:5px;width:max-content;max-width:180px;overflow-y:auto;margin:0;padding:0 4px 0 0;scrollbar-width:thin;}
+#venue-viewer .venue-copyright{position:absolute;z-index:2;left:20px;bottom:20px;font-size:11px;line-height:1.2;color:var(--foreground);pointer-events:none;}
 .btn{flex-shrink:0;font:inherit;color:var(--foreground);background:var(--background);border:1px solid var(--border);border-radius:7px;padding:7px 12px;cursor:pointer;}
 .btn[aria-pressed=true]{background:var(--primary);color:var(--primary-foreground);border-color:var(--primary);}
 .btn:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--primary);outline-offset:3px;}
@@ -89,7 +90,8 @@ th,td{text-align:left;vertical-align:top;padding:7px;border-bottom:1px solid var
  #venue-viewer .venue-head h3{font-size:14px;}
  #venue-viewer .venue-actions{top:54px;right:10px;gap:5px;}
  #venue-viewer .venue-actions .btn{padding:8px;font-size:12px;min-height:44px;}
- #venue-viewer .venue-tools{top:110px;left:10px;bottom:14px;max-width:150px;}
+ #venue-viewer .venue-tools{top:110px;left:10px;bottom:38px;max-width:150px;}
+ #venue-viewer .venue-copyright{left:10px;bottom:12px;}
  #venue-viewer .venue-tools .btn{font-size:12px;min-height:44px;padding:8px 10px;}
  #venue-viewer .venue-options{right:10px;top:110px;font-size:12px;gap:0;padding:5px 9px;}
  #venue-viewer .form-check{min-height:40px;}
@@ -3755,6 +3757,7 @@ root.querySelector('[data-loading]').hidden=true;root.querySelector('[data-statu
  full.addEventListener('click',async()=>{try{if(document.fullscreenElement||document.webkitFullscreenElement){if(document.exitFullscreen)await document.exitFullscreen();else document.webkitExitFullscreen();}else if(root.requestFullscreen){await root.requestFullscreen();}else if(root.webkitRequestFullscreen){root.webkitRequestFullscreen();}else{root.querySelector('[data-status]').textContent='Use your browser full-screen command. The model already fills this window.';}}catch(e){root.querySelector('[data-status]').textContent='Full screen is unavailable here. Open the downloaded file in your browser.';}sync();});
  document.addEventListener('fullscreenchange',sync);document.addEventListener('webkitfullscreenchange',sync);
  actions.append(controls,full);root.append(actions);
+ const copyright=document.createElement('small');copyright.className='venue-copyright';copyright.textContent='© HK721 2026';root.append(copyright);
  root.querySelector('[data-status]').textContent='Full-window 3D view ready';
 })();
 
